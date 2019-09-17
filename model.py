@@ -84,15 +84,14 @@ def generator(X_trainfname, y_trainang, batch_size=32):
                 name = drive_path + 'data/' + batch_imgName[k][j]
 
                 image_bgr = cv2.imread(name)
-                image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
-                if image_rgb is None:
+                if image_bgr is None:
                   continue  
-                else:
-                  steer_angle = float(batch_angle[k])
-                  if j == 1:
-                    steer_angle = steer_angle+0.2
-                  elif j ==2:
-                    steer_angle = steer_angle-0.2
+                image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
+                steer_angle = float(batch_angle[k])
+                if j == 1:
+                  steer_angle = steer_angle+0.2
+                elif j ==2:
+                  steer_angle = steer_angle-0.2
 
                   images.append(image_rgb)
                   angles.append(steer_angle)
